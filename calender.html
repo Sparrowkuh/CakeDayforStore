@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calendar</title>
+<style>
+  .calendar {
+    border-collapse: collapse;
+    width: 300px;
+  }
+  .calendar th, .calendar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  .calendar th {
+    background-color: #f2f2f2;
+  }
+  .highlight {
+    background-color: #f88;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<table class="calendar">
+  <thead>
+    <tr>
+      <th colspan="7">June 2024</th>
+    </tr>
+    <tr>
+      <th>Su</th>
+      <th>Mo</th>
+      <th>Tu</th>
+      <th>We</th>
+      <th>Th</th>
+      <th>Fr</th>
+      <th>Sa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td>01</td>
+    </tr>
+    <tr>
+      <td>02</td><td>03</td><td>04</td><td>05</td><td>06</td><td>07</td><td>08</td>
+    </tr>
+    <tr>
+      <td>09</td><td class="highlight">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+    </tr>
+    <tr>
+      <td>16</td><td>17</td><td>18</td><td>29</td><td>20</td><td>21</td><td>22</td>
+    </tr>
+    <tr>
+      <td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td>
+    </tr>
+    <tr>
+        <td>30</td><td style="color: gray">01</td><td  style="color: gray">02</td><td  style="color: gray">03</td><td  style="color: gray">04</td><td  style="color: gray">05</td><td  style="color: gray">06</td>
+      </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CakeDay 사장님용 앱</title>
+        <link rel="stylesheet" href="producer_styles.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+        <style>
+            .calendar {
+                border-collapse: collapse;
+                width: 75%;
+                margin-top: 15px;
+            }
+            .calendar th,
+            .calendar td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+            .calendar th {
+                background-color: #ffd900;
+            }
+            .highlight {
+                background-color: #4b0082;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="CakeDay_logo.png" alt="logo" class="logo" />
+            <h1>CakeDay 사장님용 앱</h1>
+        </header>
+        <main>
+            <section id="intro">
+                <h2 id="welcomeMessage">사장님 안녕하세요!</h2>
+
+                <p class="subtext">케이크 무인 픽업대 앱을 통해 편리하게 케이크를 예약하고 픽업하세요.</p>
+                <p><span id="currentDate">00월 00일</span> 결제건수: 10건</p>
+                <p>오늘의 매출</p>
+                <p>총 <span id="amount">0</span>원</p>
+            </section>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th colspan="7" style="text-align: center">
+                            June 2024 <i class="fa-solid fa-arrow-right"></i>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Su</th>
+                        <th>Mo</th>
+                        <th>Tu</th>
+                        <th>We</th>
+                        <th>Th</th>
+                        <th>Fr</th>
+                        <th>Sa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>01</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>03</td>
+                        <td>04</td>
+                        <td>05</td>
+                        <td>06</td>
+                        <td>07</td>
+                        <td>08</td>
+                    </tr>
+                    <tr>
+                        <td>09</td>
+                        <td class="highlight">10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>29</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td style="color: gray">01</td>
+                        <td style="color: gray">02</td>
+                        <td style="color: gray">03</td>
+                        <td style="color: gray">04</td>
+                        <td style="color: gray">05</td>
+                        <td style="color: gray">06</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="bottom-nav">
+                <a href="#" class="nav-item" id="showPopup">
+                    <i class="fa-solid fa-book"></i>
+                    <span style="font-size: 12px">무인픽업대 예약</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-comment"></i>
+                    <span style="font-size: 12px">채팅</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span style="font-size: 12px">알림</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span style="font-size: 12px">마이페이지</span>
+                </a>
+            </div>
+        </main>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>지도를 사용하기 위해 개인정보 및 쿠키 동의가 필요합니다.</p>
+                <button id="agreeButton" class="popup-button">동의</button>
+                <button id="disagreeButton" class="popup-button">동의하지 않음</button>
+            </div>
+        </div>
+        <script>
+            document.getElementById('showPopup').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('popup').style.display = 'flex';
+            });
+
+            document.getElementById('agreeButton').onclick = function () {
+                document.getElementById('popup').style.display = 'none';
+                alert('동의하셨습니다.');
+            };
+
+            document.getElementById('disagreeButton').onclick = function () {
+                document.getElementById('popup').style.display = 'none';
+                alert('동의하지 않으셨습니다.');
+            };
+        </script>
+        <script>
+            window.onload = function () {
+                var nickname = localStorage.getItem('nickname');
+                if (nickname) {
+                    document.getElementById('welcomeMessage').textContent = nickname + '사장님 안녕하세요!';
+                }
+            };
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const targetAmount = 500000; // 목표 금액
+                const startAmount = targetAmount * 0.9; // 시작 금액 (목표 금액의 50%)
+                const duration = 500; // 애니메이션의 전체 지속 시간 (밀리초)
+                let start = null;
+
+                function animate(timestamp) {
+                    if (!start) start = timestamp; // 애니메이션 시작 시간 초기화
+                    const elapsed = timestamp - start; // 경과 시간
+                    const progress = Math.min(elapsed / duration, 1); // 진행률 계산 (0에서 1 사이)
+
+                    // 현재 금액을 계산하는 부분을 수정합니다. 시작 금액부터 증가하도록 설정
+                    const currentAmount = Math.floor(startAmount + progress * (targetAmount - startAmount));
+                    document.getElementById('amount').textContent = currentAmount.toLocaleString('ko-KR');
+
+                    if (progress < 1) {
+                        // 진행률이 100% 미만이면 계속 애니메이션 진행
+                        requestAnimationFrame(animate);
+                    }
+                }
+
+                // 애니메이션 시작
+                requestAnimationFrame(animate);
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var today = new Date();
+                var date = today.getDate(); // 현재 날짜
+                var month = today.getMonth() + 1; // 월 (0부터 시작하므로 +1)
+                var year = today.getFullYear(); // 연도
+
+                // 날짜 형식을 MM월 DD일로 설정. 월과 일이 10보다 작을 경우 앞에 0을 추가
+                var formattedDate = `${month < 10 ? '0' + month : month}월 ${date < 10 ? '0' + date : date}일`;
+
+                document.getElementById('currentDate').textContent = formattedDate;
+            });
+        </script>
+        <script src="app.js"></script>
+    </body>
+</html>
